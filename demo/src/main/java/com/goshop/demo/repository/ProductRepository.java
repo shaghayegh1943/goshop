@@ -1,3 +1,4 @@
+
 package com.goshop.demo.repository;
 
 import com.goshop.demo.model.Product;
@@ -18,3 +19,4 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Long countByBrandAndName(String brand, String productName);
 }
+

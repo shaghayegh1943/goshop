@@ -1,3 +1,4 @@
+
 package com.goshop.demo.service.product;
 
 import com.goshop.demo.model.Product;
@@ -17,3 +18,4 @@ public interface IProductService {
     List<Product> getAllproductsByBrandAndName(String brandName, String name);
     Long countProductsByBrandAndName(String brand, String productName);
 }
+
