@@ -1,8 +1,10 @@
 package com.goshop.demo.service.product;
 
 import com.goshop.demo.exception.ProductNotFoundException;
+import com.goshop.demo.model.Category;
 import com.goshop.demo.model.Product;
 import com.goshop.demo.repository.ProductRepository;
+import com.goshop.demo.request.AddProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +25,15 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product addProduct(Product product) {
+    public Product addProduct(AddProductRequest request) {
+
         return null;
+    }
+    private Product createProduct(AddProductRequest request, Category category){
+        return new Product(
+            request.g
+        );
+
     }
 
     @Override

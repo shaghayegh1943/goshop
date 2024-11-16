@@ -1,5 +1,6 @@
 package com.goshop.demo.model;
 
+import com.goshop.demo.request.AddProductRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,5 +31,6 @@ public class Product {
     //every photo who is not associated with a product will be removed by Orphan
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images;
+
 
 }
