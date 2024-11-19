@@ -12,7 +12,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Product {
@@ -32,5 +31,12 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images;
 
-
+    public Product(String name, String brand, BigDecimal price, int quantity, String description, Category category) {
+        this.name = name;
+        this.brand = brand;
+        this.price = price;
+        this.quantity = quantity;
+        this.description = description;
+        this.category = category;
+    }
 }

@@ -20,4 +20,8 @@ public class Category {
 
    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
    private List<Product> products ;
+
+    public Category(String name) {
+        this.name = name;
+    }
 }
