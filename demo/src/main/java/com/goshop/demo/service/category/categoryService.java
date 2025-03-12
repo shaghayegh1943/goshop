@@ -1,6 +1,6 @@
 package com.goshop.demo.service.category;
 
-import com.goshop.demo.exception.CategoryNotFoundException;
+import com.goshop.demo.exception.ResourceNotFoundException;
 import com.goshop.demo.model.Category;
 import com.goshop.demo.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class categoryService implements Icategory {
     @Override
     public Category getCategoryById(Long id) {
         return categoryRepository.findById(id)
-                .orElseThrow(() -> new CategoryNotFoundException("there was no category with catId " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("there was no category with catId " + id));
     }
 
     @Override
@@ -36,7 +36,7 @@ public class categoryService implements Icategory {
         return Optional.of(newCategory)
                 .filter(category -> !categoryRepository.existsByName(newCategory.getName()))
                 .map(categoryRepository::save)
-                .orElseThrow(() -> new CategoryNotFoundException("can not add a new category.it is already exists"));
+                .orElseThrow(() -> new ResourceNotFoundException("can not add a new category.it is already exists"));
     }
 
 
@@ -46,7 +46,7 @@ public class categoryService implements Icategory {
                 .map(oldCategory -> {
                     oldCategory.get().setName(existingCategoryToUpdate.getName());
                     return categoryRepository.save(existingCategoryToUpdate);
-                }).orElseThrow(() -> new CategoryNotFoundException("not found"));
+                }).orElseThrow(() -> new ResourceNotFoundException("not found"));
 
     }
 
@@ -56,7 +56,7 @@ public class categoryService implements Icategory {
         categoryRepository.findById(id)
                 .ifPresentOrElse(categoryRepository::delete,
                         () -> {
-                            throw new CategoryNotFoundException("we could not find category with id " + id + " to delete");
+                            throw new ResourceNotFoundException("we could not find category with id " + id + " to delete");
                         });
     }
 }

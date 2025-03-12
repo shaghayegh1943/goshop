@@ -1,6 +1,6 @@
 package com.goshop.demo.service.product;
 
-import com.goshop.demo.exception.ProductNotFoundException;
+import com.goshop.demo.exception.ResourceNotFoundException;
 import com.goshop.demo.model.Category;
 import com.goshop.demo.model.Product;
 import com.goshop.demo.repository.CategoryRepository;
@@ -27,7 +27,7 @@ public class ProductService implements IProductService {
     @Override
     public Product getProductById(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException("product not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("product not found"));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class ProductService implements IProductService {
         return productRepository.findById(productId)
                 .map(existingproduct->updateExistingProduct(existingproduct, request))
                 .map(productRepository::save)
-                .orElseThrow(() -> new ProductNotFoundException("product not found to update"));
+                .orElseThrow(() -> new ResourceNotFoundException("product not found to update"));
     }
 private  Product updateExistingProduct(Product existingProduct, UpdateProductRequest upRequest){
         existingProduct.setName(upRequest.getName());
@@ -76,7 +76,7 @@ private  Product updateExistingProduct(Product existingProduct, UpdateProductReq
         productRepository.findById(id)
                 .ifPresentOrElse(productRepository::delete,
                         () -> {
-                            throw new ProductNotFoundException("product not found");
+                            throw new ResourceNotFoundException("product not found");
                         });
     }
 
